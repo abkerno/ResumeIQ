@@ -402,10 +402,6 @@ export function LivePreview({ data }: { data: PreviewData }) {
       </div>
     </div>
 
-    {/* Printable Version */}
-    <div className="hidden print:block printable-cv" style={{ background: t.bg, color: t.ink, fontFamily: t.font }}>
-       {atsMode ? <AtsSafeContent data={data} /> : <ResumeContent theme={t} data={data} device="desktop" />}
-    </div>
   </>
 );
 }
