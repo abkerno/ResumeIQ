@@ -12,6 +12,7 @@ import {
   Microscope, Users, Camera, FileText, FileCode2, FileType2,
   ScanSearch, Command, ChevronDown, ArrowUp, ArrowDown
 } from 'lucide-react';
+import { ExportModal } from './ExportModal';
 
 type SectionId =
   | 'personal' | 'summary' | 'experience' | 'education'
@@ -179,6 +180,7 @@ export function CVBuilder({ onBack, onOpenPreview }: { onBack: () => void; onOpe
   const [saving, setSaving] = useState(false);
   const [showJDMatcher, setShowJDMatcher] = useState(false);
   const [showExport, setShowExport] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [newSkill, setNewSkill] = useState('');
   const [coachInput, setCoachInput] = useState('');
@@ -514,7 +516,7 @@ ${activeCV.targetJD || 'General pharmaceutical/clinical operations role.'}`
         onEnhance={aiEnhanceSummary}
         onOpenPreview={() => onOpenPreview?.()}
         onOpenJD={() => setShowJDMatcher(true)}
-        onToggleExport={() => setShowExport(v => !v)}
+        onToggleExport={() => setShowExportModal(true)}
         onToggleShortcuts={() => setShowShortcuts(v => !v)}
         onExportSelect={handleExportClick}
       />
@@ -612,6 +614,7 @@ ${activeCV.targetJD || 'General pharmaceutical/clinical operations role.'}`
           />
         )}
         {showShortcuts && <ShortcutsModal onClose={() => setShowShortcuts(false)} />}
+        {showExportModal && <ExportModal isOpen={showExportModal} onClose={() => setShowExportModal(false)} />}
       </AnimatePresence>
     </div>
   );

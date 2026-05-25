@@ -24,10 +24,10 @@ export interface PreviewData {
   sectionOrder?: string[];
 }
 
-type ThemeId = 'modern' | 'clinical' | 'executive' | 'neon' | 'ats';
-type DeviceId = 'desktop' | 'mobile' | 'paper';
+export type ThemeId = 'modern' | 'clinical' | 'executive' | 'neon' | 'ats';
+export type DeviceId = 'desktop' | 'mobile' | 'paper';
 
-const themes: Record<ThemeId, {
+export const themes: Record<ThemeId, {
   name: string;
   swatch: string;
   bg: string; ink: string; accent: string; accent2: string;
@@ -410,8 +410,7 @@ export function LivePreview({ data }: { data: PreviewData }) {
 );
 }
 
-/* ----------------- ATS-safe layout ----------------- */
-function AtsSafeContent({ data }: { data: PreviewData }) {
+export function AtsSafeContent({ data, includePhoto = false }: { data: PreviewData; includePhoto?: boolean }) {
   const heading: React.CSSProperties = {
     fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
     letterSpacing: 1, marginTop: 18, marginBottom: 6,
@@ -546,9 +545,18 @@ function AtsSafeContent({ data }: { data: PreviewData }) {
 
   return (
     <div style={{ padding: 36, fontFamily: 'Arial, Helvetica, sans-serif', color: '#000' }}>
-      <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>{data.personal.name}</h1>
-      <p style={{ fontSize: 12, margin: '4px 0 0 0' }}>{data.personal.title}</p>
-      <p style={{ fontSize: 11, margin: '6px 0 0 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 8 }}>
+        {includePhoto && data.personal.photo && (
+          <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '1px solid #000' }}>
+            <img src={data.personal.photo} alt={data.personal.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        )}
+        <div>
+          <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>{data.personal.name}</h1>
+          <p style={{ fontSize: 12, margin: '4px 0 0 0' }}>{data.personal.title}</p>
+        </div>
+      </div>
+      <p style={{ fontSize: 11, margin: '6px 0 0 0', borderBottom: '1px solid #000', paddingBottom: 6 }}>
         {data.personal.email} | {data.personal.phone} | {data.personal.location}
       </p>
 
@@ -557,8 +565,7 @@ function AtsSafeContent({ data }: { data: PreviewData }) {
   );
 }
 
-/* ----------------- Themed Resume ----------------- */
-function ResumeContent({ theme: t, data, device }: { theme: typeof themes[ThemeId]; data: PreviewData; device: DeviceId }) {
+export function ResumeContent({ theme: t, data, device, includePhoto = true }: { theme: typeof themes[ThemeId]; data: PreviewData; device: DeviceId; includePhoto?: boolean }) {
   const compact = device === 'mobile';
   
   const selectedTherapeutic = (data.therapeuticAreas || []).filter(a => a.selected);
@@ -762,7 +769,7 @@ function ResumeContent({ theme: t, data, device }: { theme: typeof themes[ThemeI
           }}
         />
         <div className="relative flex items-center gap-5">
-          {data.personal.photo && (
+          {includePhoto && data.personal.photo && (
             <div className="w-16 h-16 rounded-full border-2 border-white/40 overflow-hidden flex-shrink-0 bg-white/10 shadow-md">
               <img src={data.personal.photo} alt={data.personal.name} className="w-full h-full object-cover" />
             </div>

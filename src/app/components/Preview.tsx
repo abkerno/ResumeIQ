@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import {
   ChevronLeft, Download, Printer, Maximize2,
   Eye, FileText, Sparkles
 } from 'lucide-react';
 import { LivePreview, PreviewData } from './LivePreview';
+import { ExportModal } from './ExportModal';
 
 const demoData: PreviewData = {
   personal: {
@@ -40,6 +42,7 @@ import { useCV } from '../context/CVContext';
 
 export function Preview({ onBack }: { onBack: () => void }) {
   const { activeCV, atsAnalysis } = useCV();
+  const [showExportModal, setShowExportModal] = useState(false);
 
   if (!activeCV) {
     return (
@@ -106,13 +109,13 @@ export function Preview({ onBack }: { onBack: () => void }) {
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <button onClick={() => window.print()} className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium border border-white/10 text-[#94A3B8] hover:text-white hover:border-white/20 transition-all">
+            <button onClick={() => setShowExportModal(true)} className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium border border-white/10 text-[#94A3B8] hover:text-white hover:border-white/20 transition-all">
               <Printer className="w-4 h-4" />
               Print
             </button>
 
             <button
-              onClick={() => window.print()}
+              onClick={() => setShowExportModal(true)}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
               style={{ background: 'linear-gradient(135deg, #1E3A8A, #22C55E)' }}
             >
@@ -207,7 +210,7 @@ export function Preview({ onBack }: { onBack: () => void }) {
               </p>
               <div className="flex flex-col gap-2">
                 <button
-                  onClick={() => window.print()}
+                  onClick={() => setShowExportModal(true)}
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90"
                   style={{ background: 'linear-gradient(135deg, #1E3A8A, #22C55E)' }}
                 >
@@ -240,6 +243,7 @@ export function Preview({ onBack }: { onBack: () => void }) {
           </aside>
         </div>
       </div>
+      {showExportModal && <ExportModal isOpen={showExportModal} onClose={() => setShowExportModal(false)} />}
     </div>
   );
 }
