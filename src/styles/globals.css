@@ -1,0 +1,31 @@
+@media print {
+  /* Hide all screen elements but keep the layout structure */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show only the printable CV and its descendants */
+  .printable-cv,
+  .printable-cv * {
+    visibility: visible !important;
+  }
+
+  /* Position the printable CV at the top of the printed page */
+  .printable-cv {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Force background color rendering in print/PDF output */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

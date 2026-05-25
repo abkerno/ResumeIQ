@@ -1,0 +1,164 @@
+{
+  "project": "CV Architect 2026 - Pharma AI CV & ATS Studio",
+  "type": "enterprise SaaS platform UI/UX design prompt",
+  "design_goal": "Build a futuristic, high-performance CV and Cover Letter builder tailored for pharmaceutical, clinical research, regulatory affairs, and quality assurance professionals with integrated ATS simulation and AI career coaching",
+
+  "visual_identity": {
+    "style": "clinical-tech, futuristic SaaS dashboard, glassmorphism accents, dark/light mode",
+    "primary_color": "#1E3A8A",
+    "accent_color": "#22C55E",
+    "warning_color": "#F59E0B",
+    "danger_color": "#EF4444",
+    "background": "#0B1220",
+    "surface": "#111827",
+    "font_family": "Inter, Roboto Mono for analytics",
+    "ui_language": "minimal, data-driven, professional medical-tech aesthetic"
+  },
+
+  "core_modules_ui": [
+    {
+      "name": "AI Career Coach Panel",
+      "type": "interactive chat + suggestion engine",
+      "features": [
+        "Chat interface for CV improvement",
+        "Toggle between Gemini API and Pollinations mode",
+        "Suggested bullet point rewrites",
+        "Pharma compliance language enhancer (GxP, FDA, EMA)",
+        "Side panel showing improved vs original text"
+      ]
+    },
+    {
+      "name": "ATS X-Ray Engine",
+      "type": "data visualization dashboard",
+      "features": [
+        "CV heatmap overlay showing keyword density",
+        "ATS compatibility score gauge (0–100)",
+        "Job description comparison panel",
+        "Missing keywords highlighted in red",
+        "Match percentage timeline animation"
+      ],
+      "visual_style": "radar charts, heatmaps, glowing indicators, scan-line animation effect"
+    },
+    {
+      "name": "CV Builder Workspace",
+      "layout": "three panel editor system",
+      "panels": {
+        "left": [
+          "Draggable CV sections (Personal Info, Education, Experience, Skills, Certifications, Projects)",
+          "Add/remove section controls",
+          "Pharma-specific templates selector"
+        ],
+        "center": [
+          "Live CV preview (A4 layout)",
+          "Real-time formatting updates",
+          "ATS-safe layout toggle"
+        ],
+        "right": [
+          "Typography controls",
+          "Spacing and alignment tools",
+          "Theme and template switcher",
+          "Export settings (PDF, JSON, Markdown)"
+        ]
+      }
+    },
+    {
+      "name": "Pharma Intelligence Hub",
+      "type": "knowledge configuration panel",
+      "features": [
+        "Niche selector: CRA, Regulatory Affairs, QA, Clinical Research, General Pharma",
+        "Auto keyword injection suggestions",
+        "Industry phrase library",
+        "Compliance terminology suggestions",
+        "Experience optimization rules"
+      ]
+    },
+    {
+      "name": "Student Mode Dashboard",
+      "type": "adaptive CV structure mode",
+      "features": [
+        "Prioritizes education and academic projects",
+        "Internship and training focus layout",
+        "Simplified ATS-friendly structure",
+        "Guided CV builder wizard"
+      ]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "Landing Page",
+      "layout": "hero + feature showcase + ATS preview + AI demo section",
+      "sections": [
+        "Hero: 'CV Architect 2026 - Build Pharma-Ready Careers'",
+        "Live ATS score demo preview widget",
+        "AI Career Coach preview chat",
+        "Feature grid (ATS X-Ray, Pharma Intelligence, AI Optimization)",
+        "Call to action: Start Building CV"
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "layout": "sidebar navigation + analytics overview",
+      "components": [
+        "CV projects list",
+        "ATS score history chart",
+        "Quick create CV button",
+        "Recent AI suggestions feed"
+      ]
+    },
+    {
+      "name": "ATS Simulation Page",
+      "layout": "full analytics workspace",
+      "components": [
+        "Job description input panel",
+        "CV parsing visualization",
+        "Keyword heatmap overlay",
+        "Match score dashboard",
+        "Improvement suggestions panel"
+      ]
+    }
+  ],
+
+  "data_visualization_style": {
+    "charts": [
+      "radar charts for skill match",
+      "heatmaps for keyword density",
+      "progress bars for ATS scoring",
+      "timeline comparison graphs"
+    ],
+    "animations": [
+      "scan-line ATS analysis effect",
+      "glowing keyword highlights",
+      "smooth score transitions",
+      "panel slide transitions"
+    ]
+  },
+
+  "ux_flow": [
+    "User selects pharma niche",
+    "User inputs or imports CV",
+    "AI refines content",
+    "ATS X-Ray analyzes compatibility",
+    "User improves CV using suggestions",
+    "Final export as PDF/JSON/Markdown"
+  ],
+
+  "export_system": {
+    "formats": ["PDF (print-ready A4)", "JSON structured CV data", "Markdown CV"],
+    "features": [
+      "ATS-safe PDF export",
+      "custom branding removal mode",
+      "multi-template export support"
+    ]
+  },
+
+  "target_users": [
+    "pharmacy students",
+    "clinical researchers",
+    "CRA professionals",
+    "regulatory affairs specialists",
+    "QA/QC professionals"
+  ],
+
+  "final_output": "high-fidelity SaaS UI design ready for React 19 + Vite implementation with modular architecture"
+}
