@@ -106,14 +106,14 @@ function SponsorsSplash({ phase }: { phase: Phase }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#22C55E]/25 bg-[#22C55E]/6 mb-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#22C55E]/25 bg-[#22C55E]/6 mb-5 max-w-full text-center">
             <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
-            <span className="text-[#22C55E] text-xs font-medium tracking-widest uppercase">Ecosystem Partners & Sponsors</span>
+            <span className="text-[#22C55E] text-[10px] md:text-xs font-medium tracking-widest uppercase truncate">Ecosystem Partners & Sponsors</span>
           </div>
-          <h1 className="text-5xl font-black text-white tracking-tight leading-none mb-2">
+          <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-none mb-2">
             ResumeIQ <span className="text-[#22C55E]">2026</span>
           </h1>
-          <p className="text-[#475569] text-sm tracking-widest uppercase font-medium">Pharmaceutical Career Intelligence</p>
+          <p className="text-[#475569] text-xs md:text-sm tracking-widest uppercase font-medium">Pharmaceutical Career Intelligence</p>
         </motion.div>
 
         {/* Centered Partners Row */}
@@ -231,17 +231,17 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#22C55E]/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#1E3A8A]/10 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-20 text-center">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 md:px-6 py-12 md:py-20 text-center">
 
         {/* Tag */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#22C55E]/8 border border-[#22C55E]/25 mb-8"
+          className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-[#22C55E]/8 border border-[#22C55E]/25 mb-6 md:mb-8 max-w-full text-center"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#22C55E]" />
-          <span className="text-[#22C55E] text-xs font-semibold tracking-widest uppercase">AI-Powered Career Intelligence</span>
+          <Sparkles className="w-3 md:w-3.5 h-3 md:h-3.5 text-[#22C55E] flex-shrink-0" />
+          <span className="text-[#22C55E] text-[10px] md:text-xs font-semibold tracking-widest uppercase truncate">AI-Powered Career Intelligence</span>
         </motion.div>
 
         {/* Headline */}
@@ -249,7 +249,7 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-7xl md:text-8xl font-black tracking-tight leading-none mb-6"
+          className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-none mb-6 max-w-4xl"
           style={{
             background: 'linear-gradient(135deg, #ffffff 0%, #93C5FD 50%, #22C55E 100%)',
             WebkitBackgroundClip: 'text',
@@ -258,7 +258,7 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
         >
           ResumeIQ
           <br />
-          <span className="text-5xl md:text-6xl font-black text-[#1E3A8A]" style={{ WebkitTextFillColor: '#2563EB' }}>2026</span>
+          <span className="text-3xl sm:text-5xl md:text-6xl font-black text-[#1E3A8A]" style={{ WebkitTextFillColor: '#2563EB' }}>2026</span>
         </motion.h1>
 
         {/* Subhead */}
@@ -266,7 +266,7 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.7 }}
-          className="text-xl text-[#94A3B8] max-w-xl mb-4 leading-relaxed"
+          className="text-sm sm:text-base md:text-xl text-[#94A3B8] max-w-xl mb-4 leading-relaxed"
         >
           Build pharma-ready careers. The enterprise platform for pharmaceutical, clinical, and regulatory professionals.
         </motion.p>
@@ -276,16 +276,16 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.55, duration: 0.6 }}
-          className="flex items-center gap-8 mb-14 text-sm"
+          className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mb-10 md:mb-14 text-sm"
         >
           {[
             { label: 'ATS Match Rate', value: '94%', color: '#22C55E' },
             { label: 'Compliance Score', value: '98%', color: '#2563EB' },
             { label: 'GxP Keywords', value: '300+', color: '#F59E0B' },
           ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-2xl font-black mb-0.5" style={{ color: s.color }}>{s.value}</div>
-              <div className="text-[#475569] text-xs uppercase tracking-widest font-medium">{s.label}</div>
+            <div key={s.label} className="text-center px-2">
+              <div className="text-xl md:text-2xl font-black mb-0.5" style={{ color: s.color }}>{s.value}</div>
+              <div className="text-[#475569] text-[10px] md:text-xs uppercase tracking-widest font-medium">{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -295,13 +295,14 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full px-4"
         >
           <motion.button
             onClick={onGetStarted}
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.2 }}
-            className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white font-bold text-lg overflow-hidden"
+            className="group relative inline-flex items-center justify-center gap-3 px-6 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl text-white font-bold text-base md:text-lg overflow-hidden w-full sm:w-auto"
             style={{
               background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #22C55E 100%)',
               boxShadow: '0 0 40px rgba(34,197,94,0.25), 0 0 80px rgba(30,58,138,0.2)',
@@ -310,12 +311,12 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
             {/* shimmer sweep */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full"
-              animate={{ translateX: ['−100%', '200%'] }}
+              animate={{ translateX: ['-100%', '200%'] }}
               transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.5, ease: 'easeInOut' }}
             />
             <span className="relative">Enter Platform</span>
             <motion.span
-              className="relative"
+              className="relative flex-shrink-0"
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
             >
@@ -323,7 +324,7 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
             </motion.span>
           </motion.button>
 
-          <p className="text-[#334155] text-xs mt-4 tracking-wider">No sign-up required · Start immediately</p>
+          <p className="text-[#334155] text-[10px] md:text-xs mt-4 tracking-wider">No sign-up required · Start immediately</p>
         </motion.div>
 
         {/* Feature chips */}
@@ -331,7 +332,7 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.7 }}
-          className="flex flex-wrap justify-center gap-2 mt-16"
+          className="flex flex-wrap justify-center gap-2 mt-10 md:mt-16 max-w-2xl px-2"
         >
           {[
             { icon: <Radar className="w-3.5 h-3.5" />, label: 'ATS X-Ray Engine' },
@@ -341,9 +342,9 @@ function HeroPage({ onGetStarted }: { onGetStarted: () => void }) {
           ].map((chip) => (
             <div
               key={chip.label}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/8 bg-white/[0.03] text-[#64748B] text-xs font-medium"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/8 bg-white/[0.03] text-[#64748B] text-[10px] md:text-xs font-medium"
             >
-              <span className="text-[#1E3A8A]">{chip.icon}</span>
+              <span className="text-[#1E3A8A] flex-shrink-0">{chip.icon}</span>
               {chip.label}
             </div>
           ))}

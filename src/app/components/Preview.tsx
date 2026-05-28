@@ -78,8 +78,8 @@ export function Preview({ onBack }: { onBack: () => void }) {
   return (
     <div className="min-h-screen bg-[#070D1A]">
       {/* ── Page Header ──────────────────────────── */}
-      <div className="border-b border-white/[0.06] bg-[#070D1A]/95 backdrop-blur-xl sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center gap-5">
+      <div className="border-b border-white/[0.06] bg-[#070D1A]/95 backdrop-blur-xl sticky top-0 z-40 py-3 sm:py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center gap-3 sm:gap-5">
           <button
             onClick={onBack}
             className="flex items-center gap-1.5 text-[#475569] hover:text-white transition-colors text-sm font-medium group"
@@ -90,19 +90,19 @@ export function Preview({ onBack }: { onBack: () => void }) {
 
           <div className="w-px h-6 bg-white/10" />
 
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0"
               style={{ background: 'linear-gradient(135deg, #1E3A8A, #22C55E)' }}>
-              <Eye className="w-5 h-5 text-white" />
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h1 className="text-white font-bold text-lg leading-none">CV Preview</h1>
-                <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#22C55E]/12 text-[#22C55E] border border-[#22C55E]/25">
+                <h1 className="text-white font-bold text-sm sm:text-lg leading-none">CV Preview</h1>
+                <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#22C55E]/12 text-[#22C55E] border border-[#22C55E]/25">
                   Live
                 </span>
               </div>
-              <p className="text-[#64748B] text-xs mt-1.5 truncate">
+              <p className="text-[#64748B] text-[10px] sm:text-xs mt-1 truncate">
                 {activeCV.personal.name} · {activeCV.personal.title}
               </p>
             </div>
@@ -116,11 +116,12 @@ export function Preview({ onBack }: { onBack: () => void }) {
 
             <button
               onClick={() => setShowExportModal(true)}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
+              className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-white text-xs sm:text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
               style={{ background: 'linear-gradient(135deg, #1E3A8A, #22C55E)' }}
             >
-              <Download className="w-4 h-4" />
-              Download PDF
+              <Download className="w-3.5 h-3.5 sm:w-4 h-4" />
+              <span className="hidden sm:inline">Download PDF</span>
+              <span className="sm:hidden">PDF</span>
             </button>
           </div>
         </div>

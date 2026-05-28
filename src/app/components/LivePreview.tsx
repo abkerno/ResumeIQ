@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ZoomIn, ZoomOut, Monitor, Smartphone, FileText,
@@ -137,6 +137,22 @@ export function LivePreview({ data }: { data: PreviewData }) {
   const [flipped, setFlipped] = useState(false);
   const [reportOpen, setReportOpen] = useState(true);
 
+  // Automatically adjust default zoom on mobile/tablet viewports
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setZoom(0.38);
+      } else if (window.innerWidth < 1024) {
+        setZoom(0.48);
+      } else {
+        setZoom(0.55);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const t = themes[theme];
   const d = deviceFrames[device];
   const atsMode = theme === 'ats';
@@ -149,7 +165,7 @@ export function LivePreview({ data }: { data: PreviewData }) {
     <>
       <div className="rounded-2xl bg-[#0A1020] border border-white/[0.07] overflow-hidden shadow-xl shadow-black/40 print:hidden">
       {/* ── Unified Toolbar ──────────────────────── */}
-      <div className="flex items-center gap-3 px-3 py-2.5 border-b border-white/[0.06] bg-white/[0.015]">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-3 py-2.5 border-b border-white/[0.06] bg-white/[0.015]">
         {/* Device segmented control */}
         <div className="flex items-center rounded-lg bg-black/30 border border-white/[0.06] p-0.5">
           {(['desktop', 'mobile', 'paper'] as DeviceId[]).map(id => (
@@ -187,8 +203,6 @@ export function LivePreview({ data }: { data: PreviewData }) {
             <ZoomIn className="w-3.5 h-3.5" />
           </button>
         </div>
-
-        <div className="flex-1" />
 
         {/* Flip */}
         <button

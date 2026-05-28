@@ -1,5 +1,6 @@
-import { motion } from 'motion/react';
-import { Home, FileText, Target, Settings, LogOut, Sparkles, LayoutGrid, GraduationCap, Eye, Info } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Home, FileText, Target, Settings, LogOut, Sparkles, LayoutGrid, GraduationCap, Eye, Info, Menu, X } from 'lucide-react';
 import { Button, IconButton, Avatar } from '@mui/material';
 
 export function Navigation({ currentPage, onNavigate, onOpenSettings }: {
@@ -7,6 +8,8 @@ export function Navigation({ currentPage, onNavigate, onOpenSettings }: {
   onNavigate: (page: string) => void;
   onOpenSettings: () => void;
 }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <Home className="w-5 h-5" /> },
     { id: 'cv-builder', label: 'CV Builder', icon: <FileText className="w-5 h-5" /> },
@@ -42,8 +45,8 @@ export function Navigation({ currentPage, onNavigate, onOpenSettings }: {
             </div>
           </motion.div>
 
-          {/* Modern Navigation with Glassmorphism */}
-          <div className="flex items-center gap-1 px-2 py-1.5 rounded-2xl bg-black/20 backdrop-blur border border-white/5">
+          {/* Desktop Glassmorphic Navigation Menu */}
+          <div className="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-2xl bg-black/20 backdrop-blur border border-white/5">
             {navItems.map((item) => (
               <motion.div key={item.id} className="relative">
                 {currentPage === item.id && (
@@ -68,8 +71,8 @@ export function Navigation({ currentPage, onNavigate, onOpenSettings }: {
             ))}
           </div>
 
-          {/* Modern User Menu */}
-          <div className="flex items-center gap-3">
+          {/* Desktop User Menu */}
+          <div className="hidden lg:flex items-center gap-3">
             <motion.button
               onClick={onOpenSettings}
               whileHover={{ scale: 1.1, rotate: 90 }}
@@ -87,8 +90,75 @@ export function Navigation({ currentPage, onNavigate, onOpenSettings }: {
               PU
             </motion.div>
           </div>
+
+          {/* Mobile Navigation Trigger Button */}
+          <div className="flex lg:hidden items-center gap-3">
+            <motion.button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 border border-white/10 bg-black/25 backdrop-blur-xl transition-all"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </motion.button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Drawer Navigation Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="lg:hidden absolute top-16 left-0 right-0 z-40 bg-gradient-to-b from-[#0B1220]/95 via-[#0F172A]/95 to-[#0B1220]/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl overflow-hidden"
+          >
+            <div className="px-6 py-4 flex flex-col gap-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onNavigate(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-3 border ${
+                    currentPage === item.id
+                      ? 'bg-gradient-to-r from-[#1E3A8A] to-[#22C55E] text-white border-white/10 shadow-md shadow-[#22C55E]/10'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5 border-transparent'
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </button>
+              ))}
+
+              <div className="h-px bg-white/10 my-2" />
+
+              {/* User Menu mobile items */}
+              <div className="flex items-center justify-between px-2 py-1">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#22C55E] flex items-center justify-center text-sm font-bold text-white shadow-md">
+                    PU
+                  </div>
+                  <div className="text-sm font-semibold text-white">Pharma User</div>
+                </div>
+                <motion.button
+                  onClick={() => {
+                    onOpenSettings();
+                    setMobileMenuOpen(false);
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-2 py-1.5 px-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 border border-white/5 bg-black/10 transition-all flex items-center gap-2"
+                >
+                  <Settings className="w-4 h-4" />
+                  <span className="text-xs font-semibold">Settings</span>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
